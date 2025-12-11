@@ -22,10 +22,9 @@ export async function toggleLike(murmurId: string) {
 }
 
 
-
 export async function getLikeCount(murmurId: string) {
-  const q = collection(db, "murmurs", murmurId, "likes");
-  const snap = await getDocs(q);
-  return snap.size;
+  const likes = await getDocs(collection(db, "murmurs", murmurId, "likes"));
+  return likes.size;
 }
+
 
