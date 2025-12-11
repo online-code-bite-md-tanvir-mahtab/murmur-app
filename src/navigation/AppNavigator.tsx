@@ -33,8 +33,11 @@ export default function AppNavigator() {
           <>
             <Stack.Screen name="Timeline" component={TimelineScreen} />
             <Stack.Screen name="CreateMurmur" component={CreateMurmurScreen} />
-            <Stack.Screen name="MyProfile" component={MyProfileScreen} />
-            <Stack.Screen name="UserProfile" component={UserProfileScreen} />
+            <Stack.Screen name="Profile" component={MyProfileScreen} />
+            <Stack.Screen
+              name="UserProfile"
+              component={UserProfileScreen as React.ComponentType<any>}
+            />
           </>
         ) : (
           <Stack.Screen

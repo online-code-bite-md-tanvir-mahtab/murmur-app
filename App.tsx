@@ -13,6 +13,7 @@ import ProfileScreen from "./src/screens/ProfileScreen";
 import TimelineScreen from "./src/screens/TimelineScreen";
 import MyProfileScreen from "./src/screens/MyProfileScreen";
 import UserProfileScreen from "./src/screens/UserProfileScreen";
+import PostDetailScreen from './src/screens/PostDetailScreen';
 
 
 
@@ -41,6 +42,12 @@ export default function App() {
         <Stack.Screen name="CreateMurmur" component={CreateMurmurScreen} options={{ title: "Create Murmur" }} />
         <Stack.Screen name="Profile" component={MyProfileScreen} />
         <Stack.Screen name="UserProfile" component={UserProfileScreen} />
+        <Stack.Screen
+          name="PostDetail"
+          component={PostDetailScreen}
+          options={{ headerShown: false }}
+        />
+
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -23,8 +23,8 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 import { toggleLike } from "../services/likeService";
-import { getUserProfile } from "../services/userService"; 
-import { Ionicons } from "@expo/vector-icons"; 
+import { getUserProfile } from "../services/userService";
+import { Ionicons } from "@expo/vector-icons";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 type Props = NativeStackScreenProps<any, "Timeline">;
@@ -86,8 +86,8 @@ const MurmurCard = ({ item, navigation, onDelete }: { item: Murmur; navigation: 
           <View>
             <Text style={styles.authorName}>{item.author.fullName}</Text>
             <Text style={styles.timestamp}>
-              {item.createdAt?.seconds 
-                ? new Date(item.createdAt.seconds * 1000).toLocaleDateString() 
+              {item.createdAt?.seconds
+                ? new Date(item.createdAt.seconds * 1000).toLocaleDateString()
                 : "Just now"}
             </Text>
           </View>
@@ -114,9 +114,12 @@ const MurmurCard = ({ item, navigation, onDelete }: { item: Murmur; navigation: 
           </Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.actionButton}>
-            <Ionicons name="chatbubble-outline" size={22} color="#6B7280" />
-            <Text style={styles.actionText}>Reply</Text>
+        <TouchableOpacity
+          style={styles.actionButton}
+          onPress={() => navigation.navigate("PostDetail", { murmurItem: item })} // <--- ADD THIS
+        >
+          <Ionicons name="chatbubble-outline" size={22} color="#6B7280" />
+          <Text style={styles.actionText}>Reply</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -189,7 +192,7 @@ export default function TimelineScreen({ navigation }: Props) {
       limit(10)
     );
     const snapshot = await getDocs(q);
-    
+
     if (!snapshot.empty) {
       const data = await processSnapshot(snapshot);
       setMurmurs((prev) => [...prev, ...data]);
@@ -223,7 +226,7 @@ export default function TimelineScreen({ navigation }: Props) {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" />
-      
+
       {/* Feed Header */}
       <View style={styles.header}>
         <View>
@@ -236,10 +239,10 @@ export default function TimelineScreen({ navigation }: Props) {
         </View>
 
         <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
-           <Image 
-             source={{ uri: auth.currentUser?.photoURL || "https://ui-avatars.com/api/?name=User" }}
-             style={styles.headerAvatar}
-           />
+          <Image
+            source={{ uri: auth.currentUser?.photoURL || "https://ui-avatars.com/api/?name=User" }}
+            style={styles.headerAvatar}
+          />
         </TouchableOpacity>
       </View>
 
